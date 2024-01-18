@@ -40,6 +40,7 @@ To set up the project locally, follow these steps:
    ```
 
    Replace `your_secret_key`, `your_algorithm`, and `your_database_connection_string` with your own values.
+   You have the flexibility to insert any distinct value for SECERT_KEY_JWT, and for ALGORITH_JWT, you can opt for 'HS256' as per your preference.
 
 4. Run the application:
 

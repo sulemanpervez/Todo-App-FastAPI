@@ -52,7 +52,7 @@ st.code("from datetime import timedelta, datetime\nfrom fastapi import APIRouter
 
 ## Configure Environment
 st.subheader("2. Configure Environment")
-st.code("Load environment variables from a `.env` file, setting values for `JWT_SECRET_KEY` and `ALGORITHM_JWT`.")
+st.code("Load environment variables from a `.env` file, setting values for `JWT_SECRET_KEY` and `ALGORITHM_JWT`. You have the flexibility to insert any distinct value for SECERT_KEY_JWT, and for ALGORITH_JWT, you can opt for 'HS256' as per your preference.")
 
 ## Router Setup
 st.subheader("3. Router Setup")
