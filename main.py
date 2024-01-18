@@ -1,9 +1,17 @@
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, status, HTTPException, Depends
 from sqlalchemy.orm import Session
 from database import SessionLocal, engine, Todo
 from pydantic import BaseModel
-
+import Jwt.models as models
+import Jwt.auth as auth
+from database import engine, SessionLocal, Base
+from typing import Annotated
+from sqlalchemy.orm import Session
+from Jwt.auth import get_current_user
 app = FastAPI()
+app.include_router(auth.router)
+
+models.Base.metadata.create_all(engine)
 
 class TodoCreate(BaseModel):
     id : int
@@ -22,6 +30,14 @@ def get_db():
         yield db
     finally:
         db.close()
+db_dependency = Annotated[Session, Depends(get_db)]
+user_dependency = Annotated[dict, Depends(get_current_user)]
+
+@app.get("/", status_code=status.HTTP_200_OK)
+async def user(user: user_dependency, db: db_dependency):
+    if user is None:
+        raise HTTPException(status_code=401, detail="Authentication Failed")
+    return {"User": user}
 
 @app.post("/todos")
 def create_todo(todo: TodoCreate, db: Session = Depends(get_db)):

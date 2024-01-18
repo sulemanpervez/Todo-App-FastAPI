@@ -1,0 +1,6 @@
+# just replace this file name as .env
+DatabaseConnectionString=""
+
+SECERT_KEY_JWT=""
+
+ALGORITHM_JWT=""

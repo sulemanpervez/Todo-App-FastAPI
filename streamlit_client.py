@@ -2,16 +2,47 @@ import streamlit as st
 import pandas as pd
 import requests
 
-# Todo Already Exist Function
 def todo_exists(todo_id):
-    # Function to check if todo with given ID already exists
     response = requests.get(f"{BASE_URL}/todos/{todo_id}")
     return response.status_code == 200
 
 BASE_URL = "http://127.0.0.1:8000"
 
+def login():
+    username = st.text_input("Username:")
+    password = st.text_input("Password:", type="password")
+    if st.button("Login"):
+        response = requests.post(
+            f"{BASE_URL}/auth/token",
+            data={"username": username, "password": password}
+        )
+        if response.status_code == 200:
+            st.session_state.logged_in = True  # Set the login state to True
+            st.success("Login successful!")
+        else:
+            st.error("Login failed. Please check your credentials.")
+
+def signup():
+    new_username = st.text_input("New Username:")
+    new_password = st.text_input("New Password:", type="password")
+    confirm_password = st.text_input("Confirm Password:", type="password")
+    
+    if new_password != confirm_password:
+        st.error("Password confirmation does not match.")
+        return
+
+    if st.button("Signup"):
+        response = requests.post(
+            f"{BASE_URL}/auth/create/user",
+            json={"username": new_username, "password": new_password}
+        )
+        if response.status_code == 201:
+            st.success("User created successfully! You can now login.")
+        else:
+            st.error("Failed to create user. Please try again.")
+
 def create_todo():
-    st.subheader("Add Items")
+    st.subheader("Add Records")
 
     # Layout
     # Creating a Two Column to Show the id, title, and description
@@ -33,14 +64,14 @@ def create_todo():
                 st.error(f"Todo with ID {id} already exists!")
 
 def read_todos():
-    st.subheader("View Items")
+    st.subheader("View Record")
     response = requests.get(f"{BASE_URL}/todos/")
     df = pd.DataFrame(response.json(), columns=["id", "title", "description"])
     with st.expander("View All Data"):
         st.dataframe(df)
 
 def update_todo():
-    st.subheader("Edit/Update Items")
+    st.subheader("Edit/Update Records")
 
     # Fetch the list of todos
     response = requests.get(f"{BASE_URL}/todos/")
@@ -100,7 +131,7 @@ def update_todo():
         st.dataframe(df2)
 
 def delete_todo():
-    st.subheader("Delete Items")
+    st.subheader("Delete Records")
     # Fetch the list of todos
     response = requests.get(f"{BASE_URL}/todos/")
     todos = response.json()
@@ -109,8 +140,8 @@ def delete_todo():
     df = pd.DataFrame(todos, columns=["id", "title", "description"])
     with st.expander("Current Data"):
         st.dataframe(df)
-    todo_id = st.text_input("Enter Todo ID to Delete")
-    st.warning(f"Do You want to Delete Selected Id {todo_id}")
+    todo_id = st.text_input("Please provide the Todo ID for deletion")
+    st.warning(f"Are you sure you want to delete the selected record? {todo_id}")
     if st.button("Delete Todo"):
         response = requests.delete(f"{BASE_URL}/todos/{todo_id}")
         if response.status_code == 200:
@@ -133,18 +164,32 @@ def about_app():
 
 def main():
     st.title("Todo App")
-    tab1, tab2, tab3, tab4, tab5 = st.tabs(["Create", "Read", "Update", "Delete", "About"])
+    
+    # Check if user is logged in
+    if 'logged_in' not in st.session_state:
+        st.session_state.logged_in = False
+    
+    # Show login/signup only if not logged in
+    if not st.session_state.logged_in:
+        option = st.radio("Choose an option", ["Login", "Signup"])
 
-    with tab1:
-        create_todo()
-    with tab2:
-        read_todos()
-    with tab3:
-        update_todo()
-    with tab4:
-        delete_todo()
-    with tab5:
-        about_app()
+        if option == "Login":
+            login()
+        elif option == "Signup":
+            signup()
+    else:
+        # If logged in, show the main functionality
+        tab1, tab2, tab3, tab4, tab5 = st.tabs(["Create", "Read", "Update", "Delete", "About"])
+        with tab1:
+            create_todo()
+        with tab2:
+            read_todos()
+        with tab3:
+            update_todo()
+        with tab4:
+            delete_todo()
+        with tab5:
+            about_app()
 
 
 
