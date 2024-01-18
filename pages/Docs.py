@@ -6,12 +6,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 # Streamlit documentation for the JWT Authentication Tutorial
-st.set_page_config(
-    page_title="Todo App documentation",
-    page_icon="📘",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
 
 ## Introduction and File Overview
 st.title("Todo App With JWT Authentication in FastAPI")
