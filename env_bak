@@ -1,6 +1,8 @@
 # just replace this file name as .env
+
 DatabaseConnectionString=""
 
 SECERT_KEY_JWT=""
 
 ALGORITHM_JWT=""
+# You have the flexibility to insert any unique value for SECERT_KEY_JWT, and for ALGORITH_JWT, you can opt for 'HS256' as per your preference.
