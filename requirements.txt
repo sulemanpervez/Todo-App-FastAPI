@@ -1,0 +1,15 @@
+# I know you might be wondering why there are lots of dependencies. 
+# I just want to include all the import files to make sure we don't run into any errors.
+fastapi
+pydantic
+sqlalchemy
+passlib
+python-jose
+python-dotenv
+SQLAlchemy
+fastapi
+sqlalchemy
+pydantic
+pandas
+streamlit
+requests
