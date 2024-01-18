@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-SQLALCHEMY_DATABASE_URL = "postgresql://sulemanpervaiz9324:jx4Y8MgHcrhZ@ep-ancient-scene-74101153.us-east-2.aws.neon.tech/PIAIC?sslmode=require"
+SQLALCHEMY_DATABASE_URL = "DatabaseConnectionString"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
