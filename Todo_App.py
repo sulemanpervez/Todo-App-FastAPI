@@ -25,7 +25,7 @@ def login():
         )
         if response.status_code == 200:
             st.session_state.logged_in = True  # Set the login state to True
-            st.success("Login successful!")
+            st.success("Unlock your TodoList now! Simply tap the login button.")
         else:
             st.error("Login failed. Please check your credentials.")
 

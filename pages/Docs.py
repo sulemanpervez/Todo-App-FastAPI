@@ -48,19 +48,19 @@ st.write("Testing a protected endpoint in Swagger UI, demonstrating the requirem
 st.header("auth.py")
 ## Import Libraries
 st.subheader("1. Import Libraries")
-st.code("from datetime import timedelta, datetime\nfrom fastapi import APIRouter, Depends, HTTPException\nfrom fastapi.security import OAuth2PasswordBearer\nfrom jose import JWTError, jwt\nfrom sqlalchemy.orm import Session\nfrom typing import Optional\nfrom pydantic import BaseModel")
+st.code("""from datetime import timedelta, datetime\nfrom fastapi import APIRouter, Depends, HTTPException\nfrom fastapi.security import OAuth2PasswordBearer\nfrom jose import JWTError, jwt\nfrom sqlalchemy.orm import Session\nfrom typing import Optional\nfrom pydantic import BaseModel""")
 
 ## Configure Environment
 st.subheader("2. Configure Environment")
-st.code("Load environment variables from a `.env` file, setting values for `JWT_SECRET_KEY` and `ALGORITHM_JWT`. You have the flexibility to insert any distinct value for SECERT_KEY_JWT, and for ALGORITH_JWT, you can opt for 'HS256' as per your preference.")
+st.write("Load environment variables from a `.env` file, setting values for `JWT_SECRET_KEY` and `ALGORITHM_JWT`. You have the flexibility to insert any distinct value for SECERT_KEY_JWT, and for ALGORITH_JWT, you can opt for 'HS256' as per your preference.")
 
 ## Router Setup
 st.subheader("3. Router Setup")
-st.code("Create an instance of `APIRouter` for handling authentication-related routes.")
+st.write("Create an instance of `APIRouter` for handling authentication-related routes.")
 
 ## Constants and Dependencies
 st.subheader("4. Constants and Dependencies")
-st.code("Define constants for JWT secret key and algorithm. Also, set up a dependency (`get_db`) for handling database sessions.")
+st.write("Define constants for JWT secret key and algorithm. Also, set up a dependency (`get_db`) for handling database sessions.")
 
 ## Data Models
 st.subheader("5. Data Models")
@@ -68,27 +68,27 @@ st.code("Define data models such as `CreateUserRequest` and `Token` using Pydant
 
 ## Database Session Dependency
 st.subheader("6. Database Session Dependency")
-st.code("Create a dependency to obtain a database session (`db_dependency`).")
+st.write("Create a dependency to obtain a database session (`db_dependency`).")
 
 ## User Creation Endpoint
 st.subheader("7. User Creation Endpoint")
-st.code("Implement an endpoint (`/auth/create/user`) for creating a new user in the database.")
+st.write("Implement an endpoint (`/auth/create/user`) for creating a new user in the database.")
 
 ## Token Generation Endpoint
 st.subheader("8. Token Generation Endpoint")
-st.code("Implement an endpoint (`/auth/token`) for generating an access token upon successful authentication.")
+st.write("Implement an endpoint (`/auth/token`) for generating an access token upon successful authentication.")
 
 ## User Authentication Function
 st.subheader("9. User Authentication Function")
-st.code("Define a function (`authenticate_user`) to authenticate users by checking their credentials against the stored hashed password.")
+st.write("Define a function (`authenticate_user`) to authenticate users by checking their credentials against the stored hashed password.")
 
 ## Access Token Creation Function
 st.subheader("10. Access Token Creation Function")
-st.code("Implement a function (`create_access_token`) for creating a JWT token containing user information.")
+st.write("Implement a function (`create_access_token`) for creating a JWT token containing user information.")
 
 ## Get Current User Endpoint
 st.subheader("11. Get Current User Endpoint")
-st.code("Implement an endpoint (`/auth/get_current_user`) for retrieving the current user based on the provided JWT token.")
+st.write("Implement an endpoint (`/auth/get_current_user`) for retrieving the current user based on the provided JWT token.")
 
 st.write("The authentication flow involves creating a user, obtaining an access token through the `/auth/token` endpoint, and validating the token using the `/auth/get_current_user` endpoint.")
 st.write("Note: The code snippet lacks the definition of the `Session` model, and there's a typo in 'Depneds' (should be 'Depends'). Additionally, the actual implementation and usage of the `/auth/get_current_user` endpoint are not provided in this snippet.")
