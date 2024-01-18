@@ -212,6 +212,34 @@ st.code("@app.delete(\"/todos/{todo_id}\")\ndef delete_todo(todo_id: int, db: Se
 
 st.write("- These endpoints handle CRUD operations for TODO items, interacting with the database using SQLAlchemy.")
 
+# Header for the Streamlit app
+st.header("FastAPI Application Testing")
+
+# Testing auth.py
+st.subheader("Testing auth.py")
+st.write("""
+To ensure secure user authentication, we extensively test `auth.py`. This file contains functions for user registration, token generation, and user authentication. Our tests cover user creation, token generation, and authentication checks, ensuring a robust authentication system for our FastAPI application.
+""")
+
+# Testing models.py
+st.subheader("Testing models.py")
+st.write("""
+`models.py` defines the database models used in our FastAPI application, particularly the `User` model. We rigorously test the creation and attributes of the `User` model to guarantee accurate data storage and retrieval. Our tests ensure the integrity of the user data model, an essential aspect of our application's functionality.
+""")
+
+# Testing database.py
+st.subheader("Testing database.py")
+st.write("""
+In `database.py`, we define the database structure and interactions for our FastAPI application. Our tests for this file focus on creating and saving data, ensuring that the `Todo` model behaves as expected. By testing database operations, we verify the reliability and correctness of our application's data storage capabilities.
+""")
+
+# Testing main.py
+st.subheader("Testing main.py")
+st.write("""
+`main.py` contains the core logic of our FastAPI application, including CRUD operations for managing todos and user authentication. Our tests cover the entire application flow, from user authentication to todo creation, retrieval, and modification. By testing the main application file, we ensure the smooth functioning of our FastAPI application.
+""")
+
+
 st.sidebar.subheader("JWT Authentication in FastAPI")
 st.sidebar.markdown("Secure your FastAPI application with JSON Web Token (JWT) authentication.")
 st.sidebar.markdown("Implement user registration, login, and token generation for enhanced security.")
@@ -224,3 +252,4 @@ st.sidebar.markdown("- **Token Generation:** Generate access tokens upon success
 st.sidebar.markdown("- **Protecting Endpoints:** Finalize the authentication flow with JWT decoding and validation.")
 st.sidebar.markdown("- **Our Todo List:** Add, delete, and update tasks effortlessly")
 st.sidebar.markdown("- **Experience Personalization:** sign up and personalize your experience with easy login")
+st.sidebar.markdown("- **FastAPI fortified**: Secure auth, flawless tokens, robust data. Elevate your app security effortlessly with testing.")
