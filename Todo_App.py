@@ -2,6 +2,13 @@ import streamlit as st
 import pandas as pd
 import requests
 
+st.set_page_config(
+    page_title="Todo App",
+    page_icon="🎯",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
 def todo_exists(todo_id):
     response = requests.get(f"{BASE_URL}/todos/{todo_id}")
     return response.status_code == 200
@@ -159,9 +166,6 @@ def delete_todo():
     with st.expander("Updated Data"):
         st.dataframe(df2)
 
-def about_app():
-    st.subheader("About")
-
 def main():
     st.title("Todo App")
     
@@ -179,7 +183,7 @@ def main():
             signup()
     else:
         # If logged in, show the main functionality
-        tab1, tab2, tab3, tab4, tab5 = st.tabs(["Create", "Read", "Update", "Delete", "About"])
+        tab1, tab2, tab3, tab4 = st.tabs(["Create", "Read", "Update", "Delete"])
         with tab1:
             create_todo()
         with tab2:
@@ -188,8 +192,6 @@ def main():
             update_todo()
         with tab4:
             delete_todo()
-        with tab5:
-            about_app()
 
 
 
