@@ -34,9 +34,9 @@ To set up the project locally, follow these steps:
    Create a `.env` file in the project root with the following content:
 
    ```env
-   JWT_SECRET_KEY="your_secret_key"
-   ALGORITHM_JWT="your_algorithm"
-   DatabaseConnectionString="your_database_connection_string"
+   JWT_SECRET_KEY = "your_secret_key"
+   ALGORITHM_JWT = "your_algorithm"
+   DatabaseConnectionString = "your_database_connection_string"
    ```
 
    Replace `your_secret_key`, `your_algorithm`, and `your_database_connection_string` with your own values.
